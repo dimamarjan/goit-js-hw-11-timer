@@ -38,15 +38,10 @@ class CountdownTimer {
       );
       const mins = Math.floor((subTime % (1000 * 60 * 60)) / (1000 * 60));
       const secs = Math.floor((subTime % (1000 * 60)) / 1000);
-      // console.log(subTime);
-      // console.log(
-      //   `Время: ${days} дней, ${hours} часов, ${mins} минут, ${secs} секунд`
-      // );
       outputSections.days.textContent = days;
       outputSections.hours.textContent = timeFormating(hours);
       outputSections.minutes.textContent = timeFormating(mins);
       outputSections.secons.textContent = timeFormating(secs);
-      console.log(days.toString().length);
       if (subTime <= 0) {
         clearInterval(timerOn);
         const endMessage = document.createElement("div");
