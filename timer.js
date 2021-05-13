@@ -51,6 +51,7 @@ class CountdownTimer {
         outputSections.hours.textContent = "";
         outputSections.minutes.textContent = "";
         outputSections.secons.textContent = "";
+        outputSections.label.forEach((element) => (element.textContent = ""));
       }
     }, 1000);
   }
@@ -58,7 +59,7 @@ class CountdownTimer {
 
 const user = new CountdownTimer({
   selector: "#timer-1",
-  targetDate: new Date("May 13, 2021 10:00"),
+  targetDate: new Date("May 13, 2020 10:00"),
 });
 
 user.timer();
