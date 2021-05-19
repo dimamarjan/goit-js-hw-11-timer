@@ -11,14 +11,6 @@ outputSections.timer.style = "display: flex";
 outputSections.label.forEach((element) => (element.textContent = ":"));
 outputSections.label[3].textContent = "";
 
-function timeFormating(number) {
-  lengthNumber = number.toString().length;
-  if (lengthNumber === 1) {
-    number = `0${number}`;
-  }
-  return number;
-}
-
 class CountdownTimer {
   constructor({ selector, targetDate }) {
     this.selector = selector;
@@ -39,9 +31,12 @@ class CountdownTimer {
       const mins = Math.floor((subTime % (1000 * 60 * 60)) / (1000 * 60));
       const secs = Math.floor((subTime % (1000 * 60)) / 1000);
       outputSections.days.textContent = days;
-      outputSections.hours.textContent = timeFormating(hours);
-      outputSections.minutes.textContent = timeFormating(mins);
-      outputSections.secons.textContent = timeFormating(secs);
+      outputSections.hours.textContent =
+        hours.toString().length === 1 ? "0" + hours : hours;
+      outputSections.minutes.textContent =
+        mins.toString().length === 1 ? "0" + mins : mins;
+      outputSections.secons.textContent =
+        secs.toString().length === 1 ? "0" + secs : secs;
       if (subTime <= 0) {
         clearInterval(timerOn);
         const endMessage = document.createElement("div");
@@ -59,7 +54,7 @@ class CountdownTimer {
 
 const user = new CountdownTimer({
   selector: "#timer-1",
-  targetDate: new Date("May 13, 2020 10:00"),
+  targetDate: new Date("Jul 13, 2021 10:00"),
 });
 
 user.timer();
