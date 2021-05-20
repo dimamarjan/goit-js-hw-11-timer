@@ -2,19 +2,11 @@ class CountdownTimer {
   constructor({ selector, targetDate }) {
     this.targetDate = targetDate;
     this.outputSections = {
-      days: document
-        .querySelector(selector)
-        .querySelector("span[data-value='days'"),
-      hours: document
-        .querySelector(selector)
-        .querySelector("span[data-value='hours'"),
-      minutes: document
-        .querySelector(selector)
-        .querySelector("span[data-value='mins'"),
-      secons: document
-        .querySelector(selector)
-        .querySelector("span[data-value='secs'"),
-      label: document.querySelector(selector).querySelectorAll("span.label"),
+      days: document.querySelector(`${selector} span[data-value='days'`),
+      hours: document.querySelector(`${selector} span[data-value='hours'`),
+      minutes: document.querySelector(`${selector} span[data-value='mins'`),
+      secons: document.querySelector(`${selector} span[data-value='secs'`),
+      label: document.querySelectorAll(`${selector} span.label`),
     };
   }
 
