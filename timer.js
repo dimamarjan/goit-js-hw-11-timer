@@ -1,23 +1,26 @@
-const outputSections = {
-  days: document.querySelector("span[data-value='days'"),
-  hours: document.querySelector("span[data-value='hours'"),
-  minutes: document.querySelector("span[data-value='mins'"),
-  secons: document.querySelector("span[data-value='secs'"),
-  timer: document.querySelector("#timer-1"),
-  label: document.querySelectorAll("span.label"),
-};
-
-outputSections.timer.style = "display: flex";
-outputSections.label.forEach((element) => (element.textContent = ":"));
-outputSections.label[3].textContent = "";
-
 class CountdownTimer {
   constructor({ selector, targetDate }) {
-    this.selector = selector;
     this.targetDate = targetDate;
+    this.outputSections = {
+      days: document
+        .querySelector(selector)
+        .querySelector("span[data-value='days'"),
+      hours: document
+        .querySelector(selector)
+        .querySelector("span[data-value='hours'"),
+      minutes: document
+        .querySelector(selector)
+        .querySelector("span[data-value='mins'"),
+      secons: document
+        .querySelector(selector)
+        .querySelector("span[data-value='secs'"),
+      label: document.querySelector(selector).querySelectorAll("span.label"),
+    };
   }
 
   timer() {
+    this.outputSections.label.forEach((element) => (element.textContent = ":"));
+    this.outputSections.label[3].textContent = "";
     let subTime;
     const timerOn = setInterval(() => {
       const timeNow = new Date().getTime();
@@ -30,23 +33,25 @@ class CountdownTimer {
       );
       const mins = Math.floor((subTime % (1000 * 60 * 60)) / (1000 * 60));
       const secs = Math.floor((subTime % (1000 * 60)) / 1000);
-      outputSections.days.textContent = days;
-      outputSections.hours.textContent =
+      this.outputSections.days.textContent = days;
+      this.outputSections.hours.textContent =
         hours.toString().length === 1 ? "0" + hours : hours;
-      outputSections.minutes.textContent =
+      this.outputSections.minutes.textContent =
         mins.toString().length === 1 ? "0" + mins : mins;
-      outputSections.secons.textContent =
+      this.outputSections.secons.textContent =
         secs.toString().length === 1 ? "0" + secs : secs;
       if (subTime <= 0) {
         clearInterval(timerOn);
         const endMessage = document.createElement("div");
         endMessage.textContent = "DATE IS EXPIRED!!!";
-        outputSections.timer.appendChild(endMessage);
-        outputSections.days.textContent = "";
-        outputSections.hours.textContent = "";
-        outputSections.minutes.textContent = "";
-        outputSections.secons.textContent = "";
-        outputSections.label.forEach((element) => (element.textContent = ""));
+        this.outputSections.timer.appendChild(endMessage);
+        this.outputSections.days.textContent = "";
+        this.outputSections.hours.textContent = "";
+        this.outputSections.minutes.textContent = "";
+        this.outputSections.secons.textContent = "";
+        this.outputSections.label.forEach(
+          (element) => (element.textContent = "")
+        );
       }
     }, 1000);
   }
@@ -54,7 +59,7 @@ class CountdownTimer {
 
 const user = new CountdownTimer({
   selector: "#timer-1",
-  targetDate: new Date("Jul 13, 2021 10:00"),
+  targetDate: new Date("Jul 15, 2021 10:00"),
 });
 
 user.timer();
